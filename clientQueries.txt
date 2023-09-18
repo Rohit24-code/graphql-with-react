@@ -1,0 +1,58 @@
+query getAllUsers{
+  users{
+    _id
+    firstName
+    email
+    password
+  }
+}
+
+------------------
+
+query getAllQuotes{
+  quotes{
+    name
+  }
+}
+
+-----------
+query getSpecificUser{
+  user(_id:"123123"){
+    _id
+    firstName
+  }
+}
+
+
+--------------
+
+this is how it works with variable
+
+query getSpecifiedQuote($userId:ID!){
+  quote(by:$userId){
+    name
+  }
+}
+
+
+---------
+user is the alias for signUpUserDummy;
+
+mutation  createUser($userNew:UserInput!){
+  user:signUpUserDummy(userNew:$userNew){
+  id
+  email
+    firstName
+    lastName
+}
+}
+
+
+----------
+sign in query;
+
+
+mutation  signinUser($userSignIn:UserSignInInput!){
+  user:signInUser(userSignIn:$userSignIn){
+  token
+}
